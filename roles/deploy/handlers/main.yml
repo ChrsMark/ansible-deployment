@@ -1,0 +1,8 @@
+- name: Notify slack for finished deployment
+  slack:
+    token: G922VJP24/D921DW937/3Ffe373sfhRE6y42Fg3rvf4GlK  # sample token
+    msg: 'Deployment completed for Catalog app on {{ inventory_hostname }}. Current HEAD on {{ result.after }}'
+    color: good
+    username: 'AnsibleBot'
+    icon_url: 'https://www.ansible.com/favicon.ico'
+  listen: 'slack deploy finished'

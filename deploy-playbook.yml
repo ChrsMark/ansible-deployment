@@ -1,0 +1,6 @@
+---
+- hosts: UbuntuDevServer
+  remote_user: root
+
+  roles:
+    - deploy

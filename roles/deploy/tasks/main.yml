@@ -1,0 +1,22 @@
+---
+- name: Notify Slack for starting deployment
+  slack:
+    token: G922VJP24/D921DW937/3Ffe373sfhRE6y42Fg3rvf4GlK  # sample token
+    msg: 'Deploying Catalog app on {{ inventory_hostname }}'
+    color: warning
+    username: 'AnsibleBot'
+    icon_url: 'https://www.ansible.com/favicon.ico'
+
+- name: Pull master from github
+  git:
+    repo: git@bitbucket.org:some_team/some_repo.git
+    dest: /home/my_app
+    clone: no
+    update: yes
+  register: result
+
+- name:
+  supervisorctl:
+    name: my_app
+    state: restarted
+  notify: 'slack deploy finished'
